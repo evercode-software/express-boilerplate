@@ -6,7 +6,6 @@ class UserController {
         try {
             res.json(req.user)
         } catch (error) {
-            console.log(error);
             res.status(error.code||500).json(errorHandler.message(error))
         }
     }
