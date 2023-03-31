@@ -8,8 +8,7 @@ const config = {}
 fs.readdirSync(path.join(__dirname))
 .filter(
     file => file.endsWith('.js') &&
-    file !== basename &&
-    file !== 'sequelize.js'
+    file !== basename
 )
 .forEach(file => {
     const item = require(path.join(__dirname, file));

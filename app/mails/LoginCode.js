@@ -21,10 +21,9 @@ class LoginCode {
 
     button() {
         return { 
-            text: 'Masuk', 
-            link: 'https://contoh.com/masuk'
+            // text: 'Masuk', 
+            // link: 'https://contoh.com/masuk'
         }
-        
     }
 
     footer() {

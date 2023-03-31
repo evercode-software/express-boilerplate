@@ -21,9 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         /**
          * Function to notify user via email
          * 
-         * @param {*} instance from app/mails/ directory 
-         * @param {*} res 
-         * @param {*} next 
          */ 
         async notify(instance, res){
             await mailer.send(this.email, instance, res)

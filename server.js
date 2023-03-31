@@ -2,7 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const { db, corsConfig } = require('./config')
+const { corsConfig } = require('./config')
 require('dotenv').config()
 
 const app = express()
@@ -18,5 +18,4 @@ app.use(require('./routes'))
 const port = process.env.PORT
 app.listen(port, () => {
     console.log(`App running on http://localhost:${port}`)
-    db.connect()
 })

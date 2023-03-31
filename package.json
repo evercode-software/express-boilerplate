@@ -1,7 +1,7 @@
 {
   "name": "express",
   "version": "1.0.0",
-  "description": "Boilerplate for Node JS app",
+  "description": "A boilerplate to create a new node js project with express framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@aws-sdk/client-ses": "^3.301.0",
     "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
     "commander": "^10.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

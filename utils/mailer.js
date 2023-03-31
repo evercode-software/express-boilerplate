@@ -1,8 +1,8 @@
 const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses')
-const errorHandler = require('./errorHandler')
-const aws = require('../config/aws')
 const fs = require('fs')
 const path = require('path')
+const errorHandler = require('./errorHandler')
+const { aws } = require('../config')
 const mustache = require('mustache')
 
 // Set SES Client credentials
@@ -17,15 +17,12 @@ const createSendEmailCommand = (toAddress, fromAddress, instance) => {
     const data = {
         greeting: instance.greeting(),
         content: instance.content(),
-        button: {
-          text: instance.button().text,
-          link: instance.button().link
-        },
+        button: instance.button(),
         footer: instance.footer()
     }
 
     // Render HTML template with data from instance
-    const templatePath = path.join(__dirname, '../utils/mail.html')
+    const templatePath = path.join(__dirname, '../resources/templates/mail/mail.html')
     const template = fs.readFileSync(templatePath, 'utf8')
     const html = mustache.render(template, data)
 

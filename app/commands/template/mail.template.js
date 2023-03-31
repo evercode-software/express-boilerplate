@@ -1,4 +1,5 @@
-class Invoice {
+module.exports = (classname) => {
+    return `class ${classname} {
     constructor() {
     }
 
@@ -11,18 +12,18 @@ class Invoice {
     }
 
     greeting() {
-        return '';
+        return 'Halo,';
     }
 
     content() {
-        return ``;
+        return \`\`;
     }
 
     button() {
         return {
             text: '',
             link: ''
-        }
+        };
     }
 
     footer() {
@@ -30,4 +31,6 @@ class Invoice {
     }
 }
 
-module.exports = Invoice;
+module.exports = ${classname}`;
+};
+  

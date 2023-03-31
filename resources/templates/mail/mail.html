@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>{{subject}}</title>
     <style>
-        /* Ganti warna latar belakang, warna teks, dll. sesuai dengan preferensi Anda */
         body {
             background-color: #f6f6f6;
             color: #666666;
@@ -16,7 +15,6 @@
             padding: 0;
         }
 
-        /* Ganti warna tombol, ukuran font, dll. sesuai dengan preferensi Anda */
         .button {
             background-color: #0099ff;
             border: none;
@@ -32,16 +30,13 @@
 </head>
 
 <body>
-    <!-- Ganti pesan pembuka sesuai dengan preferensi Anda -->
     <h4>{{greeting}}</h4>
-
-    <!-- Ganti konten email sesuai dengan preferensi Anda -->
     <p>{{{content}}}</p>
-
-    <!-- Ganti tautan dan teks tombol sesuai dengan preferensi Anda -->
-    <p><a class="button" href="{{button.link}}">{{button.text}}</a></p>
-
-    <!-- Ganti pesan penutup sesuai dengan preferensi Anda -->
+    <p>
+        {{#button.link}}
+        <a class="button" href="{{button.link}}">{{button.text}}</a>
+        {{/button.link}}
+    </p>
     <p>{{footer}}</p>
 </body>
 
