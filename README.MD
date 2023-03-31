@@ -30,14 +30,15 @@ Here is a list of installed packages for this repository.
 - sequelize
 
 ## Installation
-Install the dependencies and start the server.
+Install the dependencies and start the server. We recommend you to install nodemon to watch changes.
+
 ```sh
 git clone https://github.com/evercode-software/express-boilerplate.git
+cp .env.example .env
 npm i
 npm start
 sequelize db:migrate
 sequelize db:seed:all
-cp .env.example .env
 ```
 
 And please make sure to configure the `.env` according to your needs.
@@ -75,6 +76,7 @@ module.exports = credentials
 ```
 
 Now you can use the configuration file as follows:
+
 ```sh
 const { aws } = require('./path/to/config')
 const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses')
@@ -122,6 +124,7 @@ const { errorHandler } = require('./path/to/utils')
 
 ### Router
 If you look at the `server.js` you'll only find one line of route
+
 ```sh
 ...
 app.use(require('./routes'))
@@ -129,6 +132,7 @@ app.use(require('./routes'))
 ```
 
 If you want to add more routes, you can create a new route file and add it in `routes/index.js` as follows:
+
 ```sh
 ...
 const userRoutes = require('./user')
@@ -189,11 +193,13 @@ You need an AWS account because in this repo we use `AWS-SDK/SES` to send email 
 We use [Commander](https://www.npmjs.com/package/commander) to create a new email instance.
 
 Here is an example to create a `notification` mail instance.
+
 ```sh
 node app/commands/mail.js create Invoice
 ```
 
 It will create a new mail instance `app/mails/Invoice.js`, and the file will look like this
+
 ```sh
 class Invoice {
 
@@ -270,23 +276,6 @@ class Invoice {
 module.exports = Invoice
 ```
 
-To send email you can do as follows:
-```sh
-const { mailer } = require('../../utils')
-const Invoice = require('../mails/Invoice')
-
-function send(){
-    // 
-    const invoice = {
-        month: 'January',
-        total: 'Rp 2.500.000',
-        linkPayment: 'linkpayment.com/this-invoice'
-    }
-    await mailer.send('rio@example.com', new Invoice(invoice), res)
-}
-...
-```
-
 And then of course you need to modify the `app/mails/Invoice.js` like this
 
 ```sh
@@ -298,7 +287,7 @@ class Invoice {
      * @return void
     */
     constructor(invoice) {
-        this.invice = invoice
+        this.invoice = invoice
     }
     
     /**
@@ -323,6 +312,25 @@ class Invoice {
             link: this.invoice.link
         };
     }
+...
+```
+
+To send email you can do as follows:
+
+```sh
+const { mailer } = require('../../utils')
+const Invoice = require('../mails/Invoice')
+
+function async send(){
+    // 
+    const invoice = {
+        month: 'January',
+        total: 'Rp 2.500.000',
+        linkPayment: 'linkpayment.com/this-invoice'
+    }
+    await mailer.send('rio@example.com', new Invoice(invoice), res)
+}
+...
 ```
 
 This instance will generate an email with a 'Pay Now' button. You can leave button function empty to create an email without a link.
